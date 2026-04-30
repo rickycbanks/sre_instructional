@@ -5,7 +5,8 @@ function groupByLetter() {
   const groups = new Map<string, typeof glossaryTerms>();
 
   for (const term of [...glossaryTerms].sort((left, right) => left.term.localeCompare(right.term))) {
-    const letter = term.term[0]?.toUpperCase() ?? "#";
+    const match = term.term.match(/[A-Za-z0-9]/);
+    const letter = match ? match[0].toUpperCase() : "#";
     const existing = groups.get(letter) ?? [];
     existing.push(term);
     groups.set(letter, existing);
