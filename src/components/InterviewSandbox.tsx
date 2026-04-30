@@ -13,7 +13,7 @@ export default function InterviewSandbox() {
     <div className="my-12 p-8 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl not-prose shadow-sm">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">SRE Interview Sandbox</h2>
+          <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">SRE Practice Sandbox</h2>
           <p className="text-zinc-500 text-sm mt-1">Practice real-world SRE scenarios and architectural challenges.</p>
         </div>
         <div className="flex bg-zinc-200 dark:bg-zinc-800 p-1 rounded-xl">

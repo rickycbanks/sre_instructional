@@ -30,7 +30,7 @@ export default function GlossaryPage() {
               Container, Docker, Kubernetes, and reliability terms you can jump to quickly.
             </h1>
             <p className="mt-4 max-w-3xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Use this as a refresher while you work through modules or prepare for interviews. Each term includes a
+              Use this as a refresher while you work through modules or hands-on exercises. Each term includes a
               plain-language definition and why it matters in real operational conversations.
             </p>
           </div>
@@ -42,10 +42,10 @@ export default function GlossaryPage() {
               Back to learning path
             </Link>
             <Link
-              href="/readiness"
+              href="/progress"
               className="rounded-xl bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
             >
-              Readiness dashboard
+              Progress dashboard
             </Link>
           </div>
         </header>

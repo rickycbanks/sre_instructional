@@ -36,7 +36,7 @@ function getCompetencyScores(modules: Module[], completedModules: Set<string>, d
 
 function bandForScore(score: number) {
   if (score >= 75) {
-    return "Interview-ready";
+    return "Established";
   }
 
   if (score >= 45) {
@@ -57,10 +57,10 @@ export default function ReadinessDashboard({ modules }: ReadinessDashboardProps)
     <div className="space-y-8">
       <section className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-600 dark:text-blue-400">
-          Readiness dashboard
+          Progress dashboard
         </p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-          See where your SRE interview signal is already strong and where you still need reps.
+          See where your platform and reliability skills are already strong and where to keep practicing.
         </h1>
         <p className="mt-3 max-w-3xl text-zinc-600 dark:text-zinc-400">
           Scores blend learning-path completion with the best recorded drill results for each competency. It is a coaching

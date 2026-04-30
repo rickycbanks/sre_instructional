@@ -98,10 +98,10 @@ export default async function ModulePage({ params }: PageProps) {
               Glossary
             </Link>
             <Link
-              href="/readiness"
+              href="/progress"
               className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-semibold text-zinc-600 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-blue-400"
             >
-              Readiness
+              Progress
             </Link>
             <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-600 dark:bg-zinc-900 dark:text-zinc-300">
               {currentModule.slug.toUpperCase()}
@@ -145,7 +145,7 @@ export default async function ModulePage({ params }: PageProps) {
 
             {currentModule.meta.interviewFocus.length > 0 ? (
               <div className="mt-6 rounded-3xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900/50">
-                <h2 className="text-lg font-semibold text-zinc-950 dark:text-zinc-50">Interview focus</h2>
+                <h2 className="text-lg font-semibold text-zinc-950 dark:text-zinc-50">Practice focus</h2>
                 <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
                   {currentModule.meta.interviewFocus.map((item) => (
                     <li key={item}>• {item}</li>

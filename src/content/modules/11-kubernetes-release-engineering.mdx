@@ -1,6 +1,6 @@
 ---
 title: Kubernetes Operations, Scheduling & Release Safety
-description: Learn the rollout controls, workload primitives, scheduling signals, and deployment guardrails that appear constantly in SRE hiring loops.
+description: Learn the rollout controls, workload primitives, scheduling signals, and deployment guardrails that matter in day-to-day SRE work.
 level: Interview
 estimated_minutes: 19
 competencies:
@@ -20,7 +20,7 @@ outcomes:
 
 # Module 11: Kubernetes is an operations platform, not an excuse to stop thinking
 
-Many SRE interviews use Kubernetes as a way to probe broader operational judgment:
+Kubernetes often exposes broader operational judgment questions:
 
 - can you stop a bad rollout?
 - do you understand what health probes are telling you?
@@ -37,7 +37,7 @@ Many SRE interviews use Kubernetes as a way to probe broader operational judgmen
 
 ## Beyond rollouts: how Kubernetes workload organization affects reliability
 
-The higher-leverage interview answers go beyond "use probes and rollback." They often mention:
+The higher-leverage explanations go beyond "use probes and rollback." They often mention:
 
 - **Deployments** for stateless workloads where replicas are interchangeable
 - **StatefulSets** when identity, ordered startup, or persistent storage semantics matter
@@ -49,7 +49,7 @@ These choices shape whether upgrades, node drains, and failures behave predictab
 
 ## Scheduling and capacity questions often hide behind Kubernetes questions
 
-If a cluster looks healthy but pods keep getting evicted or throttled, interviewers want to hear that you think about:
+If a cluster looks healthy but pods keep getting evicted or throttled, a strong explanation usually considers:
 
 - whether requests are realistic
 - whether limits are too aggressive
@@ -87,7 +87,7 @@ When a deployment starts hurting users, a strong candidate usually says some ver
       explanation: "Readiness is about whether the workload should receive traffic right now."
     },
     {
-      question: "What makes a rollback answer strong in an interview?",
+      question: "What makes a rollback explanation strong?",
       options: [
         "Treating rollback as failure and avoiding it.",
         "Using rollback or pause as a normal blast-radius reduction tool tied to clear service signals.",

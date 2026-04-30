@@ -1,13 +1,13 @@
 # SRE Interview Learning Path
 
-This project is a **Next.js + MDX learning path** for technically literate learners who want to become interview-ready for Site Reliability Engineering roles.
+This project is a **Next.js + MDX learning path** for technically literate learners who want to deepen their Site Reliability Engineering and platform engineering skills.
 
 It keeps the structure of a guided course, but each module is designed to move beyond passive reading:
 
 - **curriculum coverage** across SRE foundations, SLOs, observability, incident response, cloud/IaC, service mesh, security, FinOps, Linux/networking, and Kubernetes release safety
 - **interactive drills** for decision-making, alert tuning, troubleshooting, and command selection
 - **rubric-based feedback** that distinguishes weak, acceptable, and strong answers
-- **browser-local progress tracking** for module completion, drill performance, and readiness summaries
+- **browser-local progress tracking** for module completion, drill performance, and skill summaries
 
 ## Tech stack
 
@@ -32,10 +32,10 @@ Then open [http://localhost:3000](http://localhost:3000).
 src/
   app/
     page.tsx                     # learning path homepage
-    readiness/page.tsx           # learner readiness dashboard
+    progress/page.tsx            # learner progress dashboard
     modules/[slug]/page.tsx      # module page renderer
   components/
-    DecisionDrill.tsx            # scenario-based interview drills
+    DecisionDrill.tsx            # scenario-based decision drills
     CommandChallenge.tsx         # command/diagnosis drills
     LearningPathDashboard.tsx    # homepage progress summary
     ModuleProgressCard.tsx       # per-module completion + quick links
@@ -55,7 +55,7 @@ Each module is still authored in MDX, but frontmatter now carries richer metadat
 - estimated time
 - competencies
 - practice types
-- interview focus
+- practice focus
 - outcomes
 
 Interactive exercises are embedded directly inside MDX using reusable components such as:
@@ -70,7 +70,7 @@ Interactive exercises are embedded directly inside MDX using reusable components
 
 The target outcome is not just "understand SRE concepts." It is:
 
-> learn the ideas, practice the judgment, and build the communication patterns that help someone get hired into an SRE role.
+> learn the ideas, practice the judgment, and build the habits that help someone grow into a stronger SRE.
 
 ## GitHub Pages deployment
 

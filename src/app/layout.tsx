@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | SRE Interview Learning Path",
   },
   description:
-    "A practical SRE learning path built around interview-critical subjects, drills, and readiness tracking.",
+    "A practical SRE learning path built around platform topics, drills, and progress tracking.",
 };
 
 export default function RootLayout({

@@ -12,10 +12,10 @@ export default function Home() {
         <header className="mb-12">
           <div className="mb-6 flex flex-wrap gap-3">
             <Link
-              href="/readiness"
+              href="/progress"
               className="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-zinc-700 dark:text-zinc-200 dark:hover:text-blue-400"
             >
-              Readiness dashboard
+              Progress dashboard
             </Link>
             <Link
               href="/glossary"
@@ -28,11 +28,11 @@ export default function Home() {
             SRE learning path
           </p>
           <h1 className="mt-4 max-w-4xl text-5xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Train for SRE interviews with a guided path that emphasizes judgment, not memorization.
+            Build practical SRE skills with a guided path that emphasizes judgment, not memorization.
           </h1>
           <p className="mt-4 max-w-3xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-            The curriculum stays structured and beginner-friendly, but every module now pushes toward the skills hiring
-            loops probe: troubleshooting, systems design, Linux, Kubernetes, alerting, and blameless communication.
+            The curriculum stays structured and beginner-friendly, but every module now pushes toward the skills real
+            operators rely on: troubleshooting, systems design, Linux, Kubernetes, alerting, and blameless communication.
           </p>
         </header>
 
@@ -43,7 +43,7 @@ export default function Home() {
             <div>
               <h2 className="text-2xl font-semibold text-zinc-950 dark:text-zinc-50">Competency coverage</h2>
               <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-                The path is designed to build the core interview surfaces an SRE candidate is usually judged on.
+                The path is designed to build the core platform and reliability competencies modern SRE work depends on.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -54,10 +54,10 @@ export default function Home() {
                 Open glossary
               </Link>
               <Link
-                href="/readiness"
+                href="/progress"
                 className="rounded-xl bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
               >
-                Open readiness dashboard
+                Open progress dashboard
               </Link>
             </div>
           </div>

@@ -31,10 +31,10 @@ export default function LearningPathDashboard({ modules }: LearningPathDashboard
   const { state, completedModuleSet } = useLearningProgress();
   const completedModules = state.completedModules.length;
   const totalModules = modules.length;
-  const readiness = getCompetencyCoverage(modules, completedModuleSet)
+  const progressByCompetency = getCompetencyCoverage(modules, completedModuleSet)
     .sort((left, right) => right.progress - left.progress);
-  const strongest = readiness.filter((item) => item.progress >= 50).slice(0, 3);
-  const needsWork = readiness.filter((item) => item.progress < 50).slice(0, 3);
+  const strongest = progressByCompetency.filter((item) => item.progress >= 50).slice(0, 3);
+  const needsWork = progressByCompetency.filter((item) => item.progress < 50).slice(0, 3);
   const recommendedModule = modules.find((module) => !completedModuleSet.has(module.slug)) ?? modules[0];
 
   return (
@@ -42,10 +42,10 @@ export default function LearningPathDashboard({ modules }: LearningPathDashboard
       <div className="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
         <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-600 dark:text-blue-400">
-            Interview-focused path
+            Applied learning path
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
-            Learn the concepts, then practice the judgment interviewers actually test.
+            Learn the concepts, then practice the judgment platform teams actually rely on.
           </h2>
           <p className="mt-3 max-w-2xl text-zinc-600 dark:text-zinc-400">
             Each module now mixes explanations with drills in troubleshooting, systems design, Linux, Kubernetes,
@@ -76,13 +76,13 @@ export default function LearningPathDashboard({ modules }: LearningPathDashboard
         </div>
 
         <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900/70">
-          <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Current readiness signals</p>
+          <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Current progress snapshot</p>
 
           <div className="mt-4 space-y-4">
             <div>
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">Strongest coverage</p>
               <div className="flex flex-wrap gap-2">
-                {(strongest.length > 0 ? strongest : readiness.slice(0, 3)).map((item) => (
+                {(strongest.length > 0 ? strongest : progressByCompetency.slice(0, 3)).map((item) => (
                   <span
                     key={item.key}
                     className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 dark:bg-green-950/40 dark:text-green-300"
@@ -108,10 +108,10 @@ export default function LearningPathDashboard({ modules }: LearningPathDashboard
             </div>
 
             <Link
-              href="/readiness"
+              href="/progress"
               className="inline-flex rounded-xl bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
             >
-              Open readiness dashboard
+              Open progress dashboard
             </Link>
           </div>
         </div>

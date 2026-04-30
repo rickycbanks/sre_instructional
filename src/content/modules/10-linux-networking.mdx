@@ -1,6 +1,6 @@
 ---
 title: Linux, Networking & First-Principles Debugging
-description: Build the command-line and protocol reasoning that shows up constantly in SRE troubleshooting interviews.
+description: Build the command-line and protocol reasoning that shows up constantly in SRE troubleshooting work.
 level: Interview
 estimated_minutes: 20
 competencies:
@@ -18,9 +18,9 @@ outcomes:
   - Speak confidently about TCP, DNS, TLS, and HTTP as separate layers.
 ---
 
-# Module 10: The debugging fundamentals many interview loops still test directly
+# Module 10: The debugging fundamentals strong operators still rely on directly
 
-Even in cloud-native environments, SRE interviewers still probe for Linux and networking basics because these are the skills that help you debug without magical thinking.
+Even in cloud-native environments, Linux and networking basics still matter because these are the skills that help you debug without magical thinking.
 
 ## Linux: start with the bottleneck you suspect
 
@@ -42,7 +42,7 @@ A clean troubleshooting flow separates:
 - **TLS** — can the handshake succeed?
 - **HTTP** — is the application responding correctly?
 
-Candidates often blur these together. Interviewers notice when you test the narrowest layer first.
+It is easy to blur these together. The strongest explanations test the narrowest layer first.
 
 <CommandChallenge drillId="linux-memory-pressure" />
 
@@ -72,7 +72,7 @@ Candidates often blur these together. Interviewers notice when you test the narr
       explanation: "A strong debugger narrows the failure layer first, which avoids mixing multiple hypotheses together."
     },
     {
-      question: "What makes a Linux debugging answer stronger in an interview?",
+      question: "What makes a Linux debugging explanation stronger?",
       options: [
         "Listing many commands without saying why.",
         "Choosing a command that directly tests the suspected resource issue and explaining what you expect from it.",
@@ -80,7 +80,7 @@ Candidates often blur these together. Interviewers notice when you test the narr
         "Assuming the orchestration platform will explain everything."
       ],
       correctAnswer: 1,
-      explanation: "Interviewers want to hear your reasoning, not just the names of familiar commands."
+      explanation: "The strongest explanations make the reasoning clear, not just the names of familiar commands."
     }
   ]}
 />

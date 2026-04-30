@@ -131,7 +131,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     term: "Rootless container",
     category: "Containers",
     definition: "A container or runtime configured so the process does not run as UID 0 inside the workload.",
-    whyItMatters: "Running as non-root is a basic hardening measure and often appears in platform and security interviews.",
+    whyItMatters: "Running as non-root is a basic hardening measure and often matters in platform and security reviews.",
   },
   {
     slug: "sidecar",
@@ -145,7 +145,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     term: "StatefulSet",
     category: "Kubernetes",
     definition: "A Kubernetes workload controller for stateful applications that need stable identities and ordered behavior.",
-    whyItMatters: "Choosing StatefulSet versus Deployment is a common workload-design question in interviews.",
+    whyItMatters: "Choosing StatefulSet versus Deployment is a common workload-design decision in Kubernetes practice.",
   },
   {
     slug: "supply-chain",

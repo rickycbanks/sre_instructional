@@ -79,10 +79,10 @@ export default function ModuleProgressCard({
           {isComplete ? "Mark as not done" : "Mark module complete"}
         </button>
         <Link
-          href="/readiness"
+          href="/progress"
           className="rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-zinc-700 dark:text-zinc-200 dark:hover:text-blue-400"
         >
-          View readiness
+          View progress
         </Link>
       </div>
     </aside>

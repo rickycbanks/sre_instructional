@@ -91,7 +91,7 @@ export const decisionDrills: Record<string, DecisionDrillDefinition> = {
           {
             text: "Say SRE teams should never do manual work, so the feature roadmap needs to wait.",
             score: 1,
-            feedback: "The principle is directionally right, but the answer is too rigid for an interview or stakeholder conversation.",
+            feedback: "The principle is directionally right, but the answer is too rigid for a practical stakeholder conversation.",
           },
           {
             text: "Avoid the conversation and just build the script quietly so nobody blocks it.",
@@ -408,7 +408,7 @@ export const decisionDrills: Record<string, DecisionDrillDefinition> = {
         ],
       },
       {
-        prompt: "After rotation, what interview answer shows mature follow-through?",
+        prompt: "After rotation, what follow-through shows mature operational thinking?",
         options: [
           {
             text: "Add secret scanning, reduce credential lifetime, and move the dependency to managed secret delivery.",

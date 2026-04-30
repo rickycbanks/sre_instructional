@@ -2,7 +2,7 @@ import Link from "next/link";
 import ReadinessDashboard from "@/components/ReadinessDashboard";
 import { getAllModules } from "@/lib/modules";
 
-export default function ReadinessPage() {
+export default function ProgressPage() {
   const modules = getAllModules();
 
   return (
