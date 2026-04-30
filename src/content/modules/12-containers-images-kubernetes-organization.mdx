@@ -1,0 +1,141 @@
+---
+title: Containers, Image Optimization & Kubernetes Workload Design
+description: Go deeper on Dockerfile structure, image slimming, runtime hardening, and how to organize workloads cleanly in Kubernetes.
+level: Interview
+estimated_minutes: 22
+competencies:
+  - containers
+  - kubernetes
+  - security
+practice:
+  - decision-drill
+  - quiz
+  - reference
+interview_focus:
+  - Explain how to reduce image size and attack surface without making production harder to operate.
+  - Distinguish when to use Deployments, StatefulSets, init containers, sidecars, and disruption budgets.
+outcomes:
+  - Understand the anatomy of a well-structured production Docker image.
+  - Explain workload organization choices in Kubernetes with operational tradeoffs.
+  - Connect container build quality to startup speed, security, and deployment safety.
+---
+
+# Module 12: Containers and workloads that are built for production, not just for demos
+
+Many technically strong candidates know how to build a container that works. Fewer can explain why one image is safer, faster, and easier to operate than another. That gap shows up quickly in interviews.
+
+## What good container organization looks like
+
+A production-friendly image usually aims for:
+
+- **small runtime footprint**
+- **predictable startup behavior**
+- **non-root execution**
+- **clear process model**
+- **minimal dependency sprawl**
+
+The practical tools behind that are not mysterious:
+
+- multi-stage builds
+- tight `.dockerignore`
+- pinned and intentionally updated base images
+- keeping build tools out of the final runtime image
+- setting a clear `ENTRYPOINT` and sane default arguments
+
+## Image optimization is also operational optimization
+
+Slimmer images do more than save storage:
+
+- they pull faster during scale-out and node replacement
+- they reduce the number of packages you have to patch or scan
+- they make cold starts and rollout blast radius smaller
+
+That is why image quality belongs in an SRE conversation, not just a developer productivity one.
+
+<DecisionDrill drillId="container-image-optimization" />
+
+## Kubernetes workload organization
+
+Once the image is good, the next question is how to run it.
+
+### Use a Deployment when:
+
+- replicas are interchangeable
+- identity does not matter
+- rolling updates are the default control model
+
+### Use a StatefulSet when:
+
+- stable network identity matters
+- storage follows the replica
+- ordered startup or shutdown matters
+
+### Use an init container when:
+
+- setup work must finish before the app starts
+- you want to keep bootstrap tooling out of the main container
+
+### Use a sidecar when:
+
+- the helper lifecycle belongs with the workload
+- the operational value outweighs the extra resource and debugging complexity
+
+## Advanced Kubernetes controls worth being able to discuss
+
+- **requests and limits** as scheduling and isolation signals
+- **Pod Disruption Budgets** to preserve availability during maintenance
+- **node affinity / anti-affinity** to shape placement and failure domains
+- **imagePullPolicy** and immutable tags for repeatable rollouts
+- **evictions** as a symptom of resource pressure or poor sizing
+
+## Strong interview framing
+
+If asked how you would improve a container platform, a strong answer often includes:
+
+1. improve the artifact first: build size, hardening, reproducibility
+2. choose the right workload controller for the application’s behavior
+3. set sane requests, limits, probes, and disruption controls
+4. connect everything back to startup speed, blast radius, and operator confidence
+
+For quick term lookups while you study, use the [reference glossary](../../glossary/).
+
+<Quiz
+  quizId="quiz-containers-images"
+  title="Containers and workload design check"
+  competencies={["containers", "kubernetes", "security"]}
+  questions={[
+    {
+      question: "Why are multi-stage builds so valuable for production container images?",
+      options: [
+        "They mainly make local shell access easier.",
+        "They keep build tooling out of the runtime image, reducing size and attack surface.",
+        "They replace the need for vulnerability scanning.",
+        "They guarantee zero-downtime deployments."
+      ],
+      correctAnswer: 1,
+      explanation: "Multi-stage builds separate build-time dependencies from runtime content, which improves image size, security posture, and pull performance."
+    },
+    {
+      question: "When is StatefulSet a stronger choice than Deployment?",
+      options: [
+        "When all replicas are identical and stateless.",
+        "When the workload needs stable identity, ordered behavior, or storage tied to replicas.",
+        "When you only want faster pod startup.",
+        "When you want to avoid probes."
+      ],
+      correctAnswer: 1,
+      explanation: "StatefulSet is intended for workloads where identity, ordering, or persistent storage semantics matter operationally."
+    },
+    {
+      question: "Why do Pod Disruption Budgets matter to SREs?",
+      options: [
+        "They eliminate the need for redundancy.",
+        "They help preserve availability during voluntary disruptions like drains and upgrades.",
+        "They are only used for cost optimization.",
+        "They replace autoscaling."
+      ],
+      correctAnswer: 1,
+      explanation: "PDBs are availability guardrails during controlled disruptions, which makes them directly relevant to operational safety."
+    }
+  ]}
+/>

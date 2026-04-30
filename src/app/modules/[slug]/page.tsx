@@ -92,6 +92,12 @@ export default async function ModulePage({ params }: PageProps) {
           </Link>
           <div className="flex flex-wrap items-center gap-2">
             <Link
+              href="/glossary"
+              className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-semibold text-zinc-600 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-blue-400"
+            >
+              Glossary
+            </Link>
+            <Link
               href="/readiness"
               className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-semibold text-zinc-600 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-blue-400"
             >
@@ -196,6 +202,19 @@ export default async function ModulePage({ params }: PageProps) {
               </ul>
             </aside>
           ) : null}
+
+          <aside className="not-prose rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+            <h2 className="text-lg font-semibold text-zinc-950 dark:text-zinc-50">Need a quick definition?</h2>
+            <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+              Jump to the glossary for container, Docker, Kubernetes, and reliability terms while you work through the module.
+            </p>
+            <Link
+              href="/glossary"
+              className="mt-4 inline-flex rounded-xl border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-zinc-700 dark:text-zinc-200 dark:hover:text-blue-400"
+            >
+              Open glossary
+            </Link>
+          </aside>
         </div>
       </main>
     </div>

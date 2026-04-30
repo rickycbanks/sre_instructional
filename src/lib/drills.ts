@@ -571,6 +571,71 @@ export const decisionDrills: Record<string, DecisionDrillDefinition> = {
       },
     },
   },
+  "container-image-optimization": {
+    id: "container-image-optimization",
+    title: "Container drill: make the image smaller, safer, and easier to operate",
+    eyebrow: "Container drill",
+    description: "Choose the changes that improve image quality without making the runtime harder to reason about.",
+    competencies: ["containers", "kubernetes", "security"],
+    steps: [
+      {
+        prompt:
+          "A production image is 1.6 GB, runs as root, includes build tools, and takes more than a minute to pull on scale-out events. What is the highest-leverage first improvement?",
+        options: [
+          {
+            text: "Switch to a multi-stage build so compilation and package managers stay in the builder stage, not the runtime image.",
+            score: 2,
+            feedback: "Strong. Multi-stage builds cut size and attack surface without changing the application behavior contract.",
+          },
+          {
+            text: "Keep the same image but increase node disk size so pulls hurt less.",
+            score: 0,
+            feedback: "That hides the symptom instead of improving artifact quality.",
+          },
+          {
+            text: "Add more application logs to the image so there is more information when containers fail.",
+            score: 0,
+            feedback: "Logging does not address image size, startup latency, or security posture.",
+          },
+        ],
+      },
+      {
+        prompt:
+          "After slimming the image, what additional answer shows mature container operational thinking?",
+        options: [
+          {
+            text: "Run as a non-root user, trim the build context with .dockerignore, and pin/update base images intentionally.",
+            score: 2,
+            feedback: "Exactly. That combines size, security, and reproducibility concerns.",
+          },
+          {
+            text: "Use latest tags everywhere so the image stays current automatically.",
+            score: 0,
+            feedback: "Floating tags reduce repeatability and make rollback reasoning weaker.",
+          },
+          {
+            text: "Move debugging tools into the production image so every container is easier to shell into.",
+            score: 1,
+            feedback: "There are cases for debug tooling, but shipping it by default usually works against minimal runtime images.",
+          },
+        ],
+      },
+    ],
+    rubric: {
+      weak: {
+        title: "Weak answer",
+        description: "Treats image optimization as only a storage problem and misses security and startup implications.",
+      },
+      acceptable: {
+        title: "Acceptable answer",
+        description: "Understands smaller images are good, but the operational and security reasoning is incomplete.",
+      },
+      strong: {
+        title: "Strong answer",
+        description: "Optimizes the build pipeline, runtime footprint, and security posture together.",
+      },
+    },
+  },
 };
 
 export const commandDrills: Record<string, CommandDrillDefinition> = {

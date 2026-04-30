@@ -3,6 +3,7 @@ export const competencyLabels = {
   slos: "SLOs",
   observability: "Observability",
   "incident-response": "Incident response",
+  containers: "Containers",
   linux: "Linux",
   networking: "Networking",
   kubernetes: "Kubernetes",

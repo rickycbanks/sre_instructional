@@ -1,6 +1,6 @@
 ---
-title: Kubernetes Operations & Release Safety
-description: Learn the rollout controls, probes, and deployment guardrails that appear constantly in SRE hiring loops.
+title: Kubernetes Operations, Scheduling & Release Safety
+description: Learn the rollout controls, workload primitives, scheduling signals, and deployment guardrails that appear constantly in SRE hiring loops.
 level: Interview
 estimated_minutes: 19
 competencies:
@@ -11,11 +11,11 @@ practice:
   - quiz
 interview_focus:
   - Explain how to stop a harmful rollout quickly and what controls should exist before the next one ships.
-  - Discuss probes, autoscaling, and progressive delivery as operational tools rather than buzzwords.
+  - Discuss probes, scheduling, autoscaling, and progressive delivery as operational tools rather than buzzwords.
 outcomes:
   - Understand how rollout safety connects to user-facing reliability.
   - Explain what readiness and liveness probes are protecting.
-  - Talk through canaries, rollback criteria, and post-incident release hardening.
+  - Talk through canaries, rollback criteria, post-incident release hardening, and scheduling controls.
 ---
 
 # Module 11: Kubernetes is an operations platform, not an excuse to stop thinking
@@ -34,6 +34,29 @@ Many SRE interviews use Kubernetes as a way to probe broader operational judgmen
 - **requests and limits** shape scheduling and resource isolation
 - **HPA** responds to demand, but only if the scaling signal matches reality
 - **rollout pause/rollback** is how you stop blast radius during a bad deploy
+
+## Beyond rollouts: how Kubernetes workload organization affects reliability
+
+The higher-leverage interview answers go beyond "use probes and rollback." They often mention:
+
+- **Deployments** for stateless workloads where replicas are interchangeable
+- **StatefulSets** when identity, ordered startup, or persistent storage semantics matter
+- **DaemonSets** when every node needs a copy of the workload, such as an agent or collector
+- **Pod Disruption Budgets** to protect availability during maintenance
+- **affinity / anti-affinity** to spread or group workloads intentionally
+
+These choices shape whether upgrades, node drains, and failures behave predictably.
+
+## Scheduling and capacity questions often hide behind Kubernetes questions
+
+If a cluster looks healthy but pods keep getting evicted or throttled, interviewers want to hear that you think about:
+
+- whether requests are realistic
+- whether limits are too aggressive
+- whether autoscaling is driven by the right metric
+- whether the workload is placed across failure domains appropriately
+
+That is Kubernetes reasoning, but it is also classic SRE reasoning: understand the control loops and protect the user path.
 
 ## Strong rollout answers
 
