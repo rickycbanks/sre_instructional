@@ -1,0 +1,83 @@
+---
+title: Guided Practice Lab & Interview Reps
+description: Turn the concepts into a capstone-style practice loop with drills, mock prompts, and a small reliability portfolio project.
+level: Interview
+estimated_minutes: 15
+competencies:
+  - observability
+  - incident-response
+  - communication
+practice:
+  - capstone
+  - behavioral-drill
+interview_focus:
+  - Turn passive knowledge into stories, drills, and portfolio evidence.
+  - Practice speaking in the concise, structured style interviewers reward.
+outcomes:
+  - Build a personal capstone plan for SRE interview prep.
+  - Know how to turn practice scenarios into reusable interview stories.
+  - Use the interview sandbox to rehearse strong-answer structure.
+---
+
+# Module 6: Practice like an interview, not just like a reader
+
+At this point in the path, the biggest risk is staying in "I understand the article" mode. Hiring loops reward candidates who can:
+
+- reason out loud
+- prioritize under uncertainty
+- explain tradeoffs cleanly
+- connect operational choices to customer impact
+
+## A simple capstone that creates real interview material
+
+Build a small service and take it through a reliability loop:
+
+1. deploy it somewhere you can operate repeatedly
+2. add health checks and metrics
+3. define one availability and one latency SLO
+4. create at least one actionable alert
+5. force a failure and document the response
+6. write a short blameless postmortem
+
+Even a modest project creates far better interview stories than only reading theory.
+
+## What to rehearse out loud
+
+Take any scenario and practice this order:
+
+1. restate the problem in user terms
+2. identify the most important signals
+3. pick the safest next action
+4. explain the tradeoff
+5. describe the preventive follow-up
+
+## Mock interview prompts
+
+Use these prompts to practice short, structured answers. Aim for clarity over length.
+
+<InterviewSandbox />
+
+## How to turn practice into better interview answers
+
+- keep a short library of incidents, tradeoffs, and automation wins
+- measure yourself on structure, not just correctness
+- revisit weak competencies in the readiness dashboard instead of repeating your favorite topics
+
+<Quiz
+  quizId="quiz-lab"
+  title="Guided practice check"
+  competencies={["observability", "communication"]}
+  questions={[
+    {
+      question: "Why is a small capstone project valuable for SRE interview prep?",
+      options: [
+        "It guarantees a job offer.",
+        "It gives you concrete examples of observability, incident response, and tradeoffs to discuss credibly.",
+        "It replaces the need for learning theory.",
+        "It matters only for staff-level roles."
+      ],
+      correctAnswer: 1,
+      explanation: "A capstone is useful because it gives you real operational stories and decision points to reference during interviews."
+    }
+  ]}
+/>

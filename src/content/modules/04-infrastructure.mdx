@@ -1,0 +1,97 @@
+---
+title: Infrastructure, IaC & Multi-Cloud Thinking
+description: Build cloud fluency, map services across providers, and reason about launch safety with infrastructure you can actually operate.
+level: Applied
+estimated_minutes: 18
+competencies:
+  - cloud
+  - release-engineering
+practice:
+  - reference
+  - design-drill
+  - quiz
+interview_focus:
+  - Explain infrastructure choices in terms of blast radius, repeatability, and rollback.
+  - Map platform services across AWS, Azure, and GCP without confusing names for concepts.
+outcomes:
+  - Recognize the common abstractions shared by major cloud platforms.
+  - Explain why IaC matters beyond convenience.
+  - Talk through launch-readiness architecture tradeoffs.
+---
+
+# Module 4: Infrastructure choices that make operations safer
+
+Cloud names change; operational concepts do not. Interviewers are usually not checking whether you can recite every provider product. They care more that you can reason about:
+
+- compute
+- storage
+- networking
+- identity
+- rollout safety
+- repeatable infrastructure changes
+
+## Think in abstractions first
+
+If someone asks about AWS, Azure, or GCP, start by anchoring on the underlying need:
+
+- "We need object storage for static assets."
+- "We need a managed relational database."
+- "We need container orchestration with autoscaling."
+
+Then map that need to the provider-specific service. That is a much stronger signal than memorizing brand names.
+
+<CloudReferenceCard />
+
+## Why infrastructure as code matters
+
+IaC is important because it gives you:
+
+- repeatable changes
+- reviewable diffs
+- fewer console-only snowflakes
+- faster recovery in new environments
+- a shared source of truth
+
+Strong answers also mention that infrastructure changes should be deployed with the same discipline as application code: review, testing, staged rollout when possible, and rollback plans.
+
+## What interviewers want in launch architecture answers
+
+For a major launch or traffic spike, a strong answer usually includes:
+
+- edge protection such as caching or CDN
+- dependency protection (timeouts, retries, circuit breakers)
+- progressive rollout for risky changes
+- observability and rollback criteria
+- some acknowledgment of cost versus resilience tradeoffs
+
+<DecisionDrill drillId="multi-region-design" />
+
+<Quiz
+  quizId="quiz-infrastructure"
+  title="Infrastructure and cloud check"
+  competencies={["cloud", "release-engineering"]}
+  questions={[
+    {
+      question: "Why is IaC valuable to an SRE beyond convenience?",
+      options: [
+        "Because it lets you avoid learning cloud consoles entirely.",
+        "Because it makes changes reviewable, repeatable, and easier to recover or reproduce.",
+        "Because it guarantees no production incident will happen.",
+        "Because managed services no longer need operational care."
+      ],
+      correctAnswer: 1,
+      explanation: "The real value of IaC is operational discipline: reviewability, repeatability, and safer change management."
+    },
+    {
+      question: "What makes a launch-readiness answer stronger in an interview?",
+      options: [
+        "Naming as many cloud services as possible.",
+        "Explaining caching, dependency protection, observability, and rollback in one coherent plan.",
+        "Assuming the provider will handle scale automatically.",
+        "Focusing only on buying more capacity."
+      ],
+      correctAnswer: 1,
+      explanation: "Interviewers want a system-level plan, not a memorized vendor list."
+    }
+  ]}
+/>

@@ -1,0 +1,83 @@
+---
+title: FinOps & Cost-Aware Reliability
+description: Learn how to reduce cloud waste without accidentally destroying headroom, latency, or operational safety.
+level: Applied
+estimated_minutes: 14
+competencies:
+  - finops
+  - slos
+practice:
+  - decision-drill
+  - quiz
+interview_focus:
+  - Show that you can talk about efficiency without divorcing it from reliability.
+  - Explain the guardrails around rightsizing and cost reduction projects.
+outcomes:
+  - Connect efficiency work to reliability tradeoffs and observability.
+  - Explain rightsizing, attribution, and safe rollback criteria for cost changes.
+  - Use SLO thinking to protect users during efficiency efforts.
+---
+
+# Module 9: Efficiency is part of operating a healthy system
+
+FinOps questions show up because mature SRE work is not only about "keeping it up." It is also about keeping systems efficient enough to scale responsibly.
+
+## Why SREs should care about cost
+
+- overprovisioned systems hide design and capacity issues
+- unnecessary spend limits future reliability investment
+- efficiency changes are still operational changes and need guardrails
+
+The right answer is not "cut cost at all costs." It is:
+
+> "Use real usage data, keep SLOs in view, and make efficiency changes with rollback criteria."
+
+## Common cost levers
+
+- rightsizing compute and requests/limits
+- storage lifecycle management
+- turning off idle resources
+- choosing the right tier for the workload
+- better attribution so teams see what they own
+
+## What makes a good interview answer
+
+Strong candidates talk about:
+
+- baseline measurement
+- expected savings
+- headroom for peaks
+- service-level guardrails
+- rollback triggers if performance regresses
+
+<DecisionDrill drillId="finops-rightsizing" />
+
+<Quiz
+  quizId="quiz-finops"
+  title="FinOps check"
+  competencies={["finops", "slos"]}
+  questions={[
+    {
+      question: "Why is rightsizing better than blindly reducing cluster size?",
+      options: [
+        "Because rightsizing uses measured demand and headroom instead of assuming averages tell the whole story.",
+        "Because rightsizing always reduces cost to zero.",
+        "Because cost changes never affect reliability.",
+        "Because only finance teams can change capacity."
+      ],
+      correctAnswer: 0,
+      explanation: "Rightsizing is stronger because it is based on workload evidence and reliability constraints, not guesswork."
+    },
+    {
+      question: "Which guardrail should accompany an efficiency project?",
+      options: [
+        "No monitoring, because the point is only to reduce spend.",
+        "Latency, saturation, and error-budget signals with clear rollback criteria.",
+        "A permanent freeze on product launches.",
+        "A ban on managed services."
+      ],
+      correctAnswer: 1,
+      explanation: "Safe cost reduction still depends on observing service health and reversing changes if user impact appears."
+    }
+  ]}
+/>

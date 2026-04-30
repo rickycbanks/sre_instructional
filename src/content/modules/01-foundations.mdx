@@ -1,0 +1,113 @@
+---
+title: SRE Foundations & Service Ownership
+description: Learn how SRE operationalizes DevOps, what toil really costs, and how to explain reliability tradeoffs in an interview.
+level: Core
+estimated_minutes: 18
+competencies:
+  - foundations
+  - communication
+practice:
+  - quiz
+  - behavioral-drill
+interview_focus:
+  - Explain the relationship between SRE and DevOps without hand-waving.
+  - Distinguish toil from engineering work and justify automation with business impact.
+outcomes:
+  - Define the core goals of SRE in language an interviewer will trust.
+  - Recognize work that should be automated, delegated, or eliminated.
+  - Frame reliability investments in terms of risk, capacity, and delivery speed.
+---
+
+# Module 1: Foundations that interviewers expect you to speak fluently
+
+SRE is not "ops with better tooling." It is the discipline of using software, measurement, and engineered guardrails to operate production systems safely at scale. Interviewers are usually looking for more than definitions: they want to hear that you understand **service ownership**, **risk management**, and the difference between work that scales with the service versus work that scales with engineers.
+
+## SRE and DevOps
+
+A strong answer is:
+
+> DevOps is the cultural goal of aligning development and operations. SRE is one concrete implementation of that goal, centered on reliability objectives, feedback loops, and automation.
+
+That framing is better than treating the terms as synonyms. It shows that you can connect engineering practice to organizational outcomes.
+
+## Toil is not just "manual work"
+
+Toil has specific properties:
+
+- manual
+- repetitive
+- automatable
+- tactical rather than strategic
+- linearly scaling with growth
+- not creating lasting system improvement
+
+An interview-ready candidate does not just label toil. They explain why it matters:
+
+- toil steals time from engineering improvements
+- toil degrades response quality during incidents
+- toil makes capacity planning and hiring look worse than they should
+
+## Reliability is a product feature
+
+SRE exists to help teams make informed tradeoffs, not to chase perfection. A mature answer often sounds like this:
+
+- users need consistent, predictable service
+- the business needs to ship changes safely
+- the team needs objective signals for when to slow down and when to move faster
+
+That is why so much of the rest of the path focuses on SLOs, alerting, deployments, and incident response.
+
+## What strong answers usually include
+
+When you describe the SRE role in an interview, include these ideas:
+
+1. **Define objectives:** reliability is measured, not guessed.
+2. **Reduce toil:** automation creates durable capacity.
+3. **Protect releases:** delivery should be progressive, observable, and reversible.
+4. **Improve systems after incidents:** prevention matters as much as mitigation.
+
+<DecisionDrill drillId="toil-tradeoffs" />
+
+## Interview rubric: "What does an SRE do?"
+
+### Weak answer
+
+"An SRE keeps servers up and helps with incidents."
+
+### Acceptable answer
+
+"An SRE improves reliability and automation while working with developers."
+
+### Strong answer
+
+"An SRE defines reliability goals, builds the observability and operational controls to meet them, reduces recurring toil with automation, and helps teams ship safely without losing sight of user impact."
+
+<Quiz
+  quizId="quiz-foundations"
+  title="Foundations knowledge check"
+  competencies={["foundations", "communication"]}
+  questions={[
+    {
+      question: "Which statement best captures the relationship between SRE and DevOps?",
+      options: [
+        "They are identical terms for the same job title.",
+        "SRE is one concrete way to implement DevOps goals using reliability practices and engineering guardrails.",
+        "DevOps replaced SRE in modern organizations.",
+        "SRE only applies to Google-scale companies."
+      ],
+      correctAnswer: 1,
+      explanation: "The strongest framing is that DevOps is the broader cultural goal and SRE is one implementation approach grounded in reliability engineering."
+    },
+    {
+      question: "Why is toil dangerous even when the team can handle it today?",
+      options: [
+        "Because toil is always impossible to automate.",
+        "Because it scales with service growth, consumes engineering capacity, and delays lasting improvements.",
+        "Because any manual work means the team is failing.",
+        "Because toil only matters during outages."
+      ],
+      correctAnswer: 1,
+      explanation: "Toil becomes expensive because it grows with the service and blocks the work that would permanently improve reliability."
+    }
+  ]}
+/>

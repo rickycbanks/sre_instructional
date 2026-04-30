@@ -1,0 +1,79 @@
+---
+title: Security, Secrets & DevSecOps
+description: Treat security as part of reliability by tightening secrets handling, access, and safe operational defaults.
+level: Applied
+estimated_minutes: 16
+competencies:
+  - security
+  - communication
+practice:
+  - decision-drill
+  - quiz
+interview_focus:
+  - Explain how security incidents should be contained and communicated.
+  - Show that you think in controls, rotation, and blast radius reduction.
+outcomes:
+  - Describe secrets hygiene and incident containment clearly.
+  - Explain why operational controls matter more than reminders to be careful.
+  - Talk about security as part of day-two reliability, not just compliance.
+---
+
+# Module 8: Secure systems are easier to operate safely
+
+SRE interviews often include security-adjacent questions because reliability and security overlap heavily in real systems:
+
+- secrets leakage can become an availability incident
+- poor access controls create massive blast radius
+- weak rollout controls can spread vulnerable builds quickly
+
+## Shift-left is not enough
+
+Security work is not finished at code review. Operationally strong teams also rely on:
+
+- secret scanning
+- short-lived credentials where possible
+- managed secret delivery
+- access scopes that match the task
+- auditability and rotation playbooks
+
+## What interviewers want to hear
+
+When a credential leaks, a strong answer usually includes:
+
+1. treat it as compromised
+2. contain by rotating or revoking it
+3. determine exposure and dependent systems
+4. communicate clearly
+5. add controls so the same class of mistake is less likely next time
+
+<DecisionDrill drillId="security-secret-rotation" />
+
+<Quiz
+  quizId="quiz-security"
+  title="Security and secrets check"
+  competencies={["security", "communication"]}
+  questions={[
+    {
+      question: "What is the strongest first step when a production credential is exposed publicly?",
+      options: [
+        "Rewrite git history and move on.",
+        "Rotate or revoke the credential and validate dependent services immediately.",
+        "Wait for a quarterly security review.",
+        "Only notify the original committer."
+      ],
+      correctAnswer: 1,
+      explanation: "The credential must be treated as compromised first; history cleanup alone does not contain the risk."
+    },
+    {
+      question: "Why is 'be more careful next time' a weak prevention answer?",
+      options: [
+        "Because humans never make mistakes.",
+        "Because mature reliability and security answers add system controls, not just reminders.",
+        "Because only legal teams can handle prevention.",
+        "Because security incidents do not need follow-up."
+      ],
+      correctAnswer: 1,
+      explanation: "Strong prevention work adds controls such as scanning, managed secrets, and shorter credential lifetimes."
+    }
+  ]}
+/>

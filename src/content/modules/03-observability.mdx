@@ -1,0 +1,115 @@
+---
+title: Observability & Debugging Flow
+description: Move from memorizing the golden signals to using metrics, logs, and traces to narrow incidents quickly.
+level: Core
+estimated_minutes: 18
+competencies:
+  - observability
+  - incident-response
+practice:
+  - decision-drill
+  - quiz
+interview_focus:
+  - Explain what to check first when a service degrades.
+  - Show how metrics, logs, and traces complement each other instead of competing.
+outcomes:
+  - Use the golden signals as a triage lens rather than a memorized list.
+  - Describe what each telemetry source is good at during an incident.
+  - Separate symptom discovery from root-cause proof.
+---
+
+# Module 3: Observability that helps you decide what to do next
+
+Good observability is not a wall of charts. It is a system that helps an engineer answer three questions fast:
+
+1. **Are users affected?**
+2. **Where in the request path is the problem surfacing?**
+3. **What is the safest next action?**
+
+## The golden signals still matter
+
+- **Latency:** how long work takes
+- **Traffic:** how much demand exists
+- **Errors:** explicit or implicit failure
+- **Saturation:** how close the system is to its limits
+
+The reason interviewers ask about them is not because they want a memorized list. They want to see that you know what each signal is useful for during investigation.
+
+## Metrics, logs, and traces each answer different questions
+
+### Metrics
+
+Best for:
+
+- fast detection
+- trend comparisons
+- SLO and alerting logic
+
+### Logs
+
+Best for:
+
+- precise event evidence
+- understanding failure context
+- seeing unexpected branches, retries, and bad inputs
+
+### Traces
+
+Best for:
+
+- request-path timing
+- dependency breakdown
+- understanding whether the slow part moved after a change
+
+## A reliable triage pattern
+
+When something breaks, a strong flow is often:
+
+1. confirm user impact
+2. compare against recent changes
+3. isolate the failing layer
+4. mitigate the most likely blast-radius source
+5. investigate root cause after stability returns
+
+That sequence sounds obvious, but in interviews many candidates skip directly from symptom to fix.
+
+<DecisionDrill drillId="observability-debugging" />
+
+## Interview shortcut: "What would you check first?"
+
+Your answer should usually contain some version of:
+
+- start with user-facing SLI impact
+- compare with the last known good state or recent deploys
+- use metrics to narrow, traces/logs to explain
+- keep mitigation separate from deep root-cause work
+
+<Quiz
+  quizId="quiz-observability"
+  title="Observability check"
+  competencies={["observability", "incident-response"]}
+  questions={[
+    {
+      question: "What is the strongest reason to use tracing during a latency incident?",
+      options: [
+        "Tracing replaces the need for metrics.",
+        "Tracing shows where time is being spent across the request path and dependencies.",
+        "Tracing is only useful for security incidents.",
+        "Tracing is mainly for auditing engineer actions."
+      ],
+      correctAnswer: 1,
+      explanation: "Traces help isolate which service hop or dependency introduced the extra time in a specific request path."
+    },
+    {
+      question: "Why is 'check recent changes' such a common early troubleshooting step?",
+      options: [
+        "Because incidents are never caused by traffic or dependencies.",
+        "Because many incidents are correlated with recent deploys or config changes, making them high-value early hypotheses.",
+        "Because it avoids looking at dashboards.",
+        "Because it is faster than mitigating user pain."
+      ],
+      correctAnswer: 1,
+      explanation: "Recent changes are common incident triggers and often provide the fastest safe mitigation path through rollback or feature disablement."
+    }
+  ]}
+/>

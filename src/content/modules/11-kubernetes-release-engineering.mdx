@@ -1,0 +1,78 @@
+---
+title: Kubernetes Operations & Release Safety
+description: Learn the rollout controls, probes, and deployment guardrails that appear constantly in SRE hiring loops.
+level: Interview
+estimated_minutes: 19
+competencies:
+  - kubernetes
+  - release-engineering
+practice:
+  - decision-drill
+  - quiz
+interview_focus:
+  - Explain how to stop a harmful rollout quickly and what controls should exist before the next one ships.
+  - Discuss probes, autoscaling, and progressive delivery as operational tools rather than buzzwords.
+outcomes:
+  - Understand how rollout safety connects to user-facing reliability.
+  - Explain what readiness and liveness probes are protecting.
+  - Talk through canaries, rollback criteria, and post-incident release hardening.
+---
+
+# Module 11: Kubernetes is an operations platform, not an excuse to stop thinking
+
+Many SRE interviews use Kubernetes as a way to probe broader operational judgment:
+
+- can you stop a bad rollout?
+- do you understand what health probes are telling you?
+- can you separate capacity problems from release problems?
+- do you know how to make the next deployment safer?
+
+## The control points worth knowing cold
+
+- **readiness probes** protect live traffic from unready pods
+- **liveness probes** recover stuck processes, but can also create churn if misused
+- **requests and limits** shape scheduling and resource isolation
+- **HPA** responds to demand, but only if the scaling signal matches reality
+- **rollout pause/rollback** is how you stop blast radius during a bad deploy
+
+## Strong rollout answers
+
+When a deployment starts hurting users, a strong candidate usually says some version of:
+
+1. check whether the issue aligns with the new rollout
+2. stop, pause, or roll back if the signal is strong enough
+3. preserve evidence
+4. restore the user path
+5. improve the release guardrails before the next deploy
+
+<DecisionDrill drillId="kubernetes-release" />
+
+<Quiz
+  quizId="quiz-kubernetes-release"
+  title="Kubernetes and release safety check"
+  competencies={["kubernetes", "release-engineering"]}
+  questions={[
+    {
+      question: "What does a readiness probe protect most directly?",
+      options: [
+        "It keeps unready pods out of live traffic.",
+        "It permanently fixes bad code.",
+        "It guarantees zero downtime for all releases.",
+        "It replaces rollback plans."
+      ],
+      correctAnswer: 0,
+      explanation: "Readiness is about whether the workload should receive traffic right now."
+    },
+    {
+      question: "What makes a rollback answer strong in an interview?",
+      options: [
+        "Treating rollback as failure and avoiding it.",
+        "Using rollback or pause as a normal blast-radius reduction tool tied to clear service signals.",
+        "Waiting for a full root-cause report before acting.",
+        "Only changing the alert thresholds."
+      ],
+      correctAnswer: 1,
+      explanation: "Strong SRE answers treat rollback as a disciplined mitigation tool, not a source of shame."
+    }
+  ]}
+/>

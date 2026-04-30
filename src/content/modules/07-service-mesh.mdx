@@ -1,0 +1,87 @@
+---
+title: Service Mesh & Traffic Engineering
+description: Understand retries, timeouts, mTLS, and traffic shaping so you can explain when a mesh helps and when it just adds complexity.
+level: Applied
+estimated_minutes: 16
+competencies:
+  - networking
+  - kubernetes
+practice:
+  - quiz
+  - design-drill
+interview_focus:
+  - Explain the operational value of a service mesh without overselling it.
+  - Talk about traffic policy, failure amplification, and security between services.
+outcomes:
+  - Understand what a service mesh centralizes.
+  - Explain how retries, timeouts, and traffic policy can help or hurt reliability.
+  - Discuss mTLS as an operational control rather than a buzzword.
+---
+
+# Module 7: Service meshes are traffic policy engines, not magic
+
+A service mesh such as Istio or Linkerd can standardize:
+
+- service-to-service encryption
+- retries and timeouts
+- traffic splitting
+- observability hooks
+- policy enforcement
+
+That can be powerful, but only if the team understands the tradeoffs.
+
+## Where meshes help
+
+- multi-service environments with repeated traffic policy needs
+- consistent mTLS between workloads
+- progressive delivery patterns like canaries
+- centralized visibility for east-west traffic
+
+## Where meshes can hurt
+
+- added control-plane complexity
+- harder debugging when engineers do not understand proxy behavior
+- retry storms if timeouts and backoff are configured poorly
+
+Strong interview answers usually sound balanced:
+
+> "A mesh can reduce repeated application logic and standardize policy, but it also adds a proxy and control-plane layer that the team must be able to operate confidently."
+
+## Reliability patterns you should be able to discuss
+
+- retries should be bounded and paired with timeouts
+- circuit breaking is valuable when dependencies degrade
+- traffic shifting is only safe when backed by observability and rollback criteria
+- mTLS protects service-to-service communication, but certificate lifecycle still needs operational care
+
+<DecisionDrill drillId="multi-region-design" />
+
+<Quiz
+  quizId="quiz-service-mesh"
+  title="Service mesh check"
+  competencies={["networking", "kubernetes"]}
+  questions={[
+    {
+      question: "What is a common failure mode when retries are configured poorly in a service mesh?",
+      options: [
+        "They always reduce user-visible latency.",
+        "They can amplify load against a struggling dependency and make the incident worse.",
+        "They eliminate the need for timeouts.",
+        "They only affect logs, not production behavior."
+      ],
+      correctAnswer: 1,
+      explanation: "Retries without careful limits and timeouts can increase pressure on an already degraded dependency."
+    },
+    {
+      question: "What makes a balanced interview answer about service meshes stronger?",
+      options: [
+        "Calling them mandatory for every Kubernetes cluster.",
+        "Explaining both the policy benefits and the operational complexity they introduce.",
+        "Avoiding all discussion of security.",
+        "Focusing only on vendor features."
+      ],
+      correctAnswer: 1,
+      explanation: "Interviewers want to see judgment, not blanket advocacy."
+    }
+  ]}
+/>

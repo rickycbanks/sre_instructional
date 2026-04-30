@@ -1,0 +1,97 @@
+---
+title: Incident Management & Blameless Communication
+description: Learn the incident lifecycle, the operator roles that keep response sane, and how to explain failure without scapegoating people.
+level: Applied
+estimated_minutes: 17
+competencies:
+  - incident-response
+  - communication
+practice:
+  - decision-drill
+  - quiz
+interview_focus:
+  - Explain the difference between mitigation and root-cause analysis.
+  - Show that you can lead through incidents and postmortems without blame-based thinking.
+outcomes:
+  - Describe a clean incident lifecycle and major response roles.
+  - Communicate clearly during and after an outage.
+  - Turn postmortems into system changes instead of retrospective theater.
+---
+
+# Module 5: Incident leadership is part technical and part communication
+
+A lot of SRE interviews test whether you can stay structured when systems and people are both under stress. That means you need to understand not only **what** to do during an incident, but **how** to coordinate the work around it.
+
+## The incident lifecycle
+
+1. **Detection** — a signal suggests user pain or elevated risk.
+2. **Triage** — confirm impact and scope.
+3. **Mitigation** — stop the bleeding.
+4. **Resolution** — restore stable service.
+5. **Learning** — capture the conditions that allowed the incident.
+
+The key distinction is between mitigation and root cause. In interviews, strong candidates say things like:
+
+> "I would first restore the user path, even if I do not fully understand the root cause yet."
+
+## Roles reduce chaos
+
+Clear roles matter because they preserve decision quality:
+
+- **Incident commander:** keeps the big picture, prioritizes, delegates
+- **Operations lead:** executes the technical actions
+- **Communications lead:** keeps stakeholders informed with accurate, calm updates
+
+One common interview trap is letting the incident commander also become the keyboard operator. That sounds efficient, but it usually degrades coordination.
+
+## Blameless does not mean accountability-free
+
+A blameless postmortem still has accountability:
+
+- document what happened
+- identify the enabling system conditions
+- assign follow-up actions with owners
+- improve controls so the same class of failure is harder to repeat
+
+That is stronger than simply saying, "We should be more careful."
+
+<DecisionDrill drillId="behavioral-postmortem" />
+
+## Interview rubric: "How would you talk to leadership after the outage?"
+
+Strong answers usually:
+
+- summarize impact clearly
+- avoid scapegoating
+- explain what was done to restore service
+- name the follow-up system changes
+
+<Quiz
+  quizId="quiz-incidents"
+  title="Incident management check"
+  competencies={["incident-response", "communication"]}
+  questions={[
+    {
+      question: "What is the primary goal of mitigation during an incident?",
+      options: [
+        "Find the perfect long-term fix before touching production.",
+        "Restore the user experience as safely and quickly as possible.",
+        "Identify the engineer responsible.",
+        "Avoid any action until the full root cause is proven."
+      ],
+      correctAnswer: 1,
+      explanation: "Mitigation is about reducing user pain quickly. Root-cause analysis and permanent fixes can continue after stability is restored."
+    },
+    {
+      question: "Why is blameless language valuable in postmortems?",
+      options: [
+        "Because accountability is not important after incidents.",
+        "Because it keeps the focus on system conditions, encourages truth-telling, and leads to better prevention work.",
+        "Because leadership should never ask hard questions.",
+        "Because only security incidents need follow-up actions."
+      ],
+      correctAnswer: 1,
+      explanation: "Blamelessness is useful because it supports accurate learning and system improvement, not because accountability disappears."
+    }
+  ]}
+/>

@@ -1,0 +1,98 @@
+---
+title: SLOs, SLIs & Alerting Strategy
+description: Learn how to define reliability targets, reason about error budgets, and build alerts that follow user pain instead of infrastructure noise.
+level: Core
+estimated_minutes: 20
+competencies:
+  - slos
+  - observability
+practice:
+  - calculator
+  - decision-drill
+  - quiz
+interview_focus:
+  - Write a practical SLI/SLO pair and explain how it changes release behavior.
+  - Show that you know the difference between paging on symptoms and paging on user impact.
+outcomes:
+  - Explain SLI, SLO, SLA, and error budget in precise terms.
+  - Connect SLO policy to product velocity and reliability tradeoffs.
+  - Describe how burn-rate style alerts reduce noise.
+---
+
+# Module 2: Reliability targets that change engineering behavior
+
+Most services do not need 100% reliability. They need a **clear, measured target** that reflects what users actually care about. That target becomes useful when it changes behavior: teams release differently, alert differently, and prioritize reliability work differently once they can see error budget consumption.
+
+## The three terms you need to distinguish cleanly
+
+- **SLI:** what you measure
+- **SLO:** the target you commit to internally
+- **SLA:** the contract or promise with consequences
+
+A crisp interview answer usually includes a concrete example:
+
+> "Our availability SLI was successful checkout requests divided by valid checkout requests. The SLO was 99.9% over 28 days. We paged on burn rate against that objective rather than on raw CPU."
+
+## Error budgets create an operating policy
+
+If the SLO is 99.9%, the error budget is 0.1%. That budget is not a trivia fact; it is a decision tool.
+
+- If the budget is healthy, the team can absorb more delivery risk.
+- If the budget is burning fast, releases need more caution or a temporary freeze.
+- If the budget is exhausted, reliability work becomes the priority.
+
+That is the bridge between product velocity and operational discipline.
+
+## Good alerts start with user-visible failure
+
+Strong SRE candidates do not lead with "page on CPU > 80%." They lead with:
+
+- user-visible failures
+- latency that breaks the experience
+- error-budget burn
+- a signal that tells the responder what kind of action is likely needed
+
+Infrastructure metrics still matter, but many of them belong in dashboards, tickets, or non-paging channels unless they clearly map to imminent user impact.
+
+<SLOCalculator />
+
+<DecisionDrill drillId="alert-tuning" />
+
+## Interview shortcut: how to answer "What makes a good alert?"
+
+Start with:
+
+1. It is **actionable**.
+2. It is **user-centric**.
+3. It is **low-noise enough** that responders trust it.
+4. It is connected to an objective such as an SLO or error-budget burn.
+
+<Quiz
+  quizId="quiz-slos"
+  title="SLOs and alerting check"
+  competencies={["slos", "observability"]}
+  questions={[
+    {
+      question: "Why do SRE teams care so much about error budgets?",
+      options: [
+        "They are mainly a finance tool for calculating outage cost.",
+        "They turn reliability targets into an operating policy for releases and prioritization.",
+        "They replace the need for incident response.",
+        "They only matter for external SLAs."
+      ],
+      correctAnswer: 1,
+      explanation: "An error budget matters because it changes how the team decides between shipping risk and reliability investment."
+    },
+    {
+      question: "Which paging strategy is strongest for a user-facing API?",
+      options: [
+        "Page on CPU usage alone because it is easy to configure.",
+        "Page on short- and long-window burn rate against a user-visible SLO.",
+        "Page on every regional latency spike even when failover hides it from users.",
+        "Page on any deploy, just in case."
+      ],
+      correctAnswer: 1,
+      explanation: "A burn-rate style alert anchored to a user-facing objective is both actionable and less noisy than raw infrastructure paging."
+    }
+  ]}
+/>

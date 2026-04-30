@@ -1,0 +1,86 @@
+---
+title: Linux, Networking & First-Principles Debugging
+description: Build the command-line and protocol reasoning that shows up constantly in SRE troubleshooting interviews.
+level: Interview
+estimated_minutes: 20
+competencies:
+  - linux
+  - networking
+practice:
+  - command-drill
+  - quiz
+interview_focus:
+  - Choose the next best Linux or networking command based on the symptom.
+  - Show that you can isolate the failing layer before guessing at fixes.
+outcomes:
+  - Reason about memory pressure, process behavior, and DNS issues.
+  - Use narrow commands to validate hypotheses quickly.
+  - Speak confidently about TCP, DNS, TLS, and HTTP as separate layers.
+---
+
+# Module 10: The debugging fundamentals many interview loops still test directly
+
+Even in cloud-native environments, SRE interviewers still probe for Linux and networking basics because these are the skills that help you debug without magical thinking.
+
+## Linux: start with the bottleneck you suspect
+
+Common first-principles questions include:
+
+- is the host CPU-bound, memory-bound, or I/O-bound?
+- is a process healthy, restarting, blocked, or leaking?
+- did the kernel start swapping?
+- are limits or file descriptors being exhausted?
+
+Strong answers choose commands that validate the suspected bottleneck, not commands that are merely familiar.
+
+## Networking: isolate the layer
+
+A clean troubleshooting flow separates:
+
+- **DNS** — can the name resolve?
+- **TCP** — can a connection be established?
+- **TLS** — can the handshake succeed?
+- **HTTP** — is the application responding correctly?
+
+Candidates often blur these together. Interviewers notice when you test the narrowest layer first.
+
+<CommandChallenge drillId="linux-memory-pressure" />
+
+<CommandChallenge drillId="networking-dns-debug" />
+
+## Strong-answer habits
+
+- start with the symptom you have, not the fix you want
+- choose the command that narrows the problem most directly
+- say what you expect to learn from running it
+- explain what your next branch would be depending on the output
+
+<Quiz
+  quizId="quiz-linux-networking"
+  title="Linux and networking check"
+  competencies={["linux", "networking"]}
+  questions={[
+    {
+      question: "Why is isolating the failing layer so important in networking troubleshooting?",
+      options: [
+        "Because DNS, TCP, TLS, and HTTP often fail differently, and precise tests prevent broad guessing.",
+        "Because only DNS problems matter in production.",
+        "Because TLS failures always mean the network is down.",
+        "Because HTTP checks replace DNS checks."
+      ],
+      correctAnswer: 0,
+      explanation: "A strong debugger narrows the failure layer first, which avoids mixing multiple hypotheses together."
+    },
+    {
+      question: "What makes a Linux debugging answer stronger in an interview?",
+      options: [
+        "Listing many commands without saying why.",
+        "Choosing a command that directly tests the suspected resource issue and explaining what you expect from it.",
+        "Restarting the host immediately.",
+        "Assuming the orchestration platform will explain everything."
+      ],
+      correctAnswer: 1,
+      explanation: "Interviewers want to hear your reasoning, not just the names of familiar commands."
+    }
+  ]}
+/>
