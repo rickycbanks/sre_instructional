@@ -8,7 +8,7 @@ import rehypeSlug from "rehype-slug";
 import CloudReferenceCard from "@/components/CloudReferenceCard";
 import CommandChallenge from "@/components/CommandChallenge";
 import DecisionDrill from "@/components/DecisionDrill";
-import InterviewSandbox from "@/components/InterviewSandbox";
+import PracticeSandbox from "@/components/PracticeSandbox";
 import ModuleProgressCard from "@/components/ModuleProgressCard";
 import Quiz from "@/components/Quiz";
 import ReadinessDashboard from "@/components/ReadinessDashboard";
@@ -27,7 +27,7 @@ const components = {
   CloudReferenceCard,
   Quiz,
   ScenarioSimulator,
-  InterviewSandbox,
+  PracticeSandbox,
   DecisionDrill,
   CommandChallenge,
   ReadinessDashboard,
@@ -143,11 +143,11 @@ export default async function ModulePage({ params }: PageProps) {
               ))}
             </div>
 
-            {currentModule.meta.interviewFocus.length > 0 ? (
+            {currentModule.meta.practiceFocus.length > 0 ? (
               <div className="mt-6 rounded-3xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900/50">
                 <h2 className="text-lg font-semibold text-zinc-950 dark:text-zinc-50">Practice focus</h2>
                 <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  {currentModule.meta.interviewFocus.map((item) => (
+                  {currentModule.meta.practiceFocus.map((item) => (
                     <li key={item}>• {item}</li>
                   ))}
                 </ul>

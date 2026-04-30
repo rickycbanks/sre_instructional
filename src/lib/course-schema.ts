@@ -35,7 +35,7 @@ export interface ModuleMeta {
   estimatedMinutes: number;
   competencies: Competency[];
   practice: PracticeType[];
-  interviewFocus: string[];
+  practiceFocus: string[];
   outcomes: string[];
 }
 

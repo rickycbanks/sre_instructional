@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { interviewPrompts } from "@/lib/drills";
+import { practicePrompts } from "@/lib/drills";
 
-export default function InterviewSandbox() {
-  const [activeTab, setActiveTab] = useState<(typeof interviewPrompts)[number]["category"]>('Systems Design');
+export default function PracticeSandbox() {
+  const [activeTab, setActiveTab] = useState<(typeof practicePrompts)[number]["category"]>('Systems Design');
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  const filteredChallenges = interviewPrompts.filter(c => c.category === activeTab);
+  const filteredChallenges = practicePrompts.filter(c => c.category === activeTab);
 
   return (
     <div className="my-12 p-8 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl not-prose shadow-sm">

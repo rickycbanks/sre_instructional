@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SRE Interview Learning Path",
-    template: "%s | SRE Interview Learning Path",
+    default: "SRE Learning Path",
+    template: "%s | SRE Learning Path",
   },
   description:
     "A practical SRE learning path built around platform topics, drills, and progress tracking.",

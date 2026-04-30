@@ -60,7 +60,7 @@ function parseModuleMeta(slug: string, data: Record<string, unknown>, content: s
         : estimateMinutes(content),
     competencies: competencies.length > 0 ? competencies : ["foundations"],
     practice: practice.length > 0 ? practice : ["quiz"],
-    interviewFocus: asStringArray(data.interview_focus),
+    practiceFocus: asStringArray(data.practice_focus),
     outcomes: asStringArray(data.outcomes),
   };
 }

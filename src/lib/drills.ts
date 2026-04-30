@@ -40,7 +40,7 @@ export interface CommandDrillDefinition {
   rubric: Record<RubricBand, { title: string; description: string }>;
 }
 
-export interface InterviewPrompt {
+export interface PracticePrompt {
   title: string;
   category: "Systems Design" | "Troubleshooting" | "Behavioral";
   prompt: string;
@@ -721,7 +721,7 @@ export const commandDrills: Record<string, CommandDrillDefinition> = {
   },
 };
 
-export const interviewPrompts: InterviewPrompt[] = [
+export const practicePrompts: PracticePrompt[] = [
   {
     title: "Design a global API launch",
     category: "Systems Design",
